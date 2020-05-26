@@ -48,7 +48,7 @@ int EjerDos(int* ptrSource, int numSrcElems, int startFromSrcIndex, int numEleme
 
 int EjerTres(const char* x)
 {
-	const char* counter;
+	const char* counter = x;
 	for (const char* i = x; *i != '\0'; i++)
 	{
 		counter++;
