@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tarea 1", "Proga 2 Tareas\Proga 2 Tareas.vcxproj", "{8E66C4ED-CF38-43A3-B87D-C631954CDFF0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tarea2", "Tarea2\Tarea2.vcxproj", "{5665E4A4-CDDF-47D1-9AFD-A78F27D8D1D5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tarea 2", "Tarea2\Tarea2.vcxproj", "{5665E4A4-CDDF-47D1-9AFD-A78F27D8D1D5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tarea 3", "Tarea 3\Tarea 3.vcxproj", "{C8BD02DB-1B2F-47DA-8A99-A621652534E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{5665E4A4-CDDF-47D1-9AFD-A78F27D8D1D5}.Release|x64.Build.0 = Release|x64
 		{5665E4A4-CDDF-47D1-9AFD-A78F27D8D1D5}.Release|x86.ActiveCfg = Release|Win32
 		{5665E4A4-CDDF-47D1-9AFD-A78F27D8D1D5}.Release|x86.Build.0 = Release|Win32
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Debug|x64.ActiveCfg = Debug|x64
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Debug|x64.Build.0 = Debug|x64
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Debug|x86.ActiveCfg = Debug|Win32
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Debug|x86.Build.0 = Debug|Win32
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Release|x64.ActiveCfg = Release|x64
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Release|x64.Build.0 = Release|x64
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Release|x86.ActiveCfg = Release|Win32
+		{C8BD02DB-1B2F-47DA-8A99-A621652534E0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
