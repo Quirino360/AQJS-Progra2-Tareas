@@ -1,30 +1,31 @@
 #include "ListaDoblemeteLigada.h"
 
-ListaDoblemeteLigada::ListaDoblemeteLigada()
+template <class T>
+ListaDoblemeteLigada<T>::ListaDoblemeteLigada()
 {
     First = nullptr;
     End = nullptr;
     size = 0;
 }
-
-ListaDoblemeteLigada::~ListaDoblemeteLigada()
+template <class T>
+ListaDoblemeteLigada<T>::~ListaDoblemeteLigada()
 {
     //Clear();
 }
 
-bool ListaDoblemeteLigada::IsEmpty()
+template <class T>
+bool ListaDoblemeteLigada<T>::IsEmpty()
 {
     if (End == nullptr)
     {
         return true;   
     }
     return false;
-
 }
 
-void ListaDoblemeteLigada::Insert(CObjReader* insrt)
+template <class T>
+void ListaDoblemeteLigada<T>::Insert(T* insrt)
 {
-
     if (IsEmpty())//primera vez que entra
     {
 
@@ -54,7 +55,8 @@ void ListaDoblemeteLigada::Insert(CObjReader* insrt)
 
 }
 
-bool ListaDoblemeteLigada::DeletePosition(int position)
+template <class T>
+bool ListaDoblemeteLigada<T>::DeletePosition(int position)
 {
     NodoDoblemeteLigado* aux = End;
     if (!IsEmpty())
@@ -75,7 +77,8 @@ bool ListaDoblemeteLigada::DeletePosition(int position)
     return false;
 }
 
-bool ListaDoblemeteLigada::DeleteNumber(CObjReader* number_toDelete)
+template <class T>
+bool ListaDoblemeteLigada<T>::DeleteNumber(T* number_toDelete)
 {
     NodoDoblemeteLigado* aux = End;
     if (!IsEmpty())
@@ -98,12 +101,14 @@ bool ListaDoblemeteLigada::DeleteNumber(CObjReader* number_toDelete)
     return false;
 }
 
-bool ListaDoblemeteLigada::Update(CObjReader* to_update, CObjReader* new_element)
+template <class T>
+bool ListaDoblemeteLigada<T>::Update(T* to_update, T* new_element)
 {
     return false;
 }
 
-void ListaDoblemeteLigada::Clear()
+template <class T>
+void ListaDoblemeteLigada<T>::Clear()
 {
     NodoDoblemeteLigado* aux = new NodoDoblemeteLigado();
     if (IsEmpty())
@@ -125,7 +130,8 @@ void ListaDoblemeteLigada::Clear()
 
 }
 
-void ListaDoblemeteLigada::Print()
+template <class T>
+void ListaDoblemeteLigada<T>::Print()
 {
     NodoDoblemeteLigado* aux = new NodoDoblemeteLigado();
     if (IsEmpty())

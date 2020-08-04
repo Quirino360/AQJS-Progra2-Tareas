@@ -1,11 +1,13 @@
 #include "NodoDoblemeteLigado.h"
 
-NodoDoblemeteLigado::NodoDoblemeteLigado()
+template <class T>
+NodoDoblemeteLigado<T>::NodoDoblemeteLigado()
 {
 	next = nullptr;
 	 prev = nullptr;
 }
 
-NodoDoblemeteLigado::~NodoDoblemeteLigado()
+template <class T>
+NodoDoblemeteLigado<T>::~NodoDoblemeteLigado()
 {
 }

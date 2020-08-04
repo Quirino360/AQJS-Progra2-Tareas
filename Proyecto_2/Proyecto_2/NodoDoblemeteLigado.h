@@ -1,25 +1,26 @@
 #pragma once
 #include "CObjReader.h"
 
+template <class T>
 class NodoDoblemeteLigado
 {
 private:
-	NodoDoblemeteLigado* next;
-	NodoDoblemeteLigado* prev;
-	CObjReader* data;
+	NodoDoblemeteLigado<T>* next;
+	NodoDoblemeteLigado<T>* prev;
+	T* data;
 
 public:
 	NodoDoblemeteLigado();
 	~NodoDoblemeteLigado();
 
-	void SetData(CObjReader* d) { data = d; }
-	CObjReader* getData() { return data; }
+	void SetData(T* d) { data = d; }
+	T* getData() { return data; }
 
-	NodoDoblemeteLigado* GetNext() { return next; }
-	void SetNext(NodoDoblemeteLigado* n) { next = n; }
+	NodoDoblemeteLigado<T>* GetNext() { return next; }
+	void SetNext(NodoDoblemeteLigado<T>* n) { next = n; }
 
-	NodoDoblemeteLigado* GetPrev() { return prev; }
-	void SetPrev(NodoDoblemeteLigado* p) { prev = p; }
+	NodoDoblemeteLigado<T>* GetPrev() { return prev; }
+	void SetPrev(NodoDoblemeteLigado<T>* p) { prev = p; }
 	
 };
 

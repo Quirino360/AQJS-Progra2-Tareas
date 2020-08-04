@@ -1,10 +1,10 @@
 #pragma once
 #include <Windows.h>
-#include "CApp.h"
 #include <iostream>
+#include "CApp.h"
+#include "ListaDoblemeteLigada.h"
 #include "Globals.h"
 #include "CObjReader.h"
-#include "ListaDoblemeteLigada.h"
 
 class CAppRender3D :
 	public CApp
@@ -13,8 +13,13 @@ public:
 	CAppRender3D();
 	~CAppRender3D();
 
+	double m_currentDeltaTime;
+	double m_objectRotation;
+	CVector3 m_objectPosition;
+	double m_rotationSpeed;
+
 	CObjReader* m_pObjR;
-	ListaDoblemeteLigada m_lista;
+	ListaDoblemeteLigada<CObjReader> m_lista;
 	unsigned int m_uObjIND;
 	unsigned int m_uShasderID;
 	unsigned int m_TextureID;

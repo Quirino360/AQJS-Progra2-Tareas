@@ -1,9 +1,17 @@
 #include "CAppRender3D.h"
 #include "CTextureLoader.h"
+
+
+
 CAppRender3D::CAppRender3D() :
-	m_uObjIND{ 0 }, m_uShasderID{ 0 }
+	m_uObjIND{ 0 }, 
+	m_uShasderID{ 0 },
+	m_pObjR {nullptr},
+	m_currentDeltaTime {0.0},
+	m_objectRotation {0.0},
+	m_objectPosition {0.0f, 0.0f, 0.0f},
+	m_rotationSpeed {DEFAULT_ROTATION_SPEED}
 {
-	m_pObjR = nullptr;
 }
 
 CAppRender3D::~CAppRender3D()
@@ -67,8 +75,27 @@ bool CAppRender3D::initialize()
 	return true;
 }
 
-void CAppRender3D::update(float dt)
+void CAppRender3D::update(float deltaTime)
 {
+	double degreesToRotate = 0.0;
+	if (deltaTime <= 0.0f)
+	{
+		return;
+	}
+	m_currentDeltaTime = deltaTime;
+
+	degreesToRotate = m_rotationSpeed * (deltaTime/1000.0f);
+	m_objectRotation += degreesToRotate;
+
+	while (m_objectRotation > 360)
+	{
+		m_objectRotation -= 360;
+	}
+	if (m_objectRotation < 0.0)
+	{
+		m_objectRotation = 0.0;
+	}
+
 }
 
 void CAppRender3D::render()
@@ -77,13 +104,53 @@ void CAppRender3D::render()
 	float color[3] = { 1.0f, 1.0f, 1.0f };
 	//unsigned int noTexture = 0;
 	CVector3 pos;
-	MathHelper::Matrix4 modelMatrix = MathHelper::SimpleModelMatrixRotationTranslation(0.0f, pos);
+
+	double totalDegreesRotatedRadians = m_objectRotation * 3.1459 / 180.0;
+	m_objectPosition.setValues(1.0f, 2.0, -1.0f);
+
+	MathHelper::Matrix4 scaleMatrix;
+	scaleMatrix.m[0][0] = 0.25f;
+	scaleMatrix.m[1][1] = 0.25f;
+	scaleMatrix.m[2][2] = 0.25f;
+
+	MathHelper::Matrix4 translationMatrix;
+	translationMatrix.m[0][3] = m_objectPosition.X;
+	translationMatrix.m[1][3] = m_objectPosition.Y;
+	translationMatrix.m[2][3] = m_objectPosition.Z;
+	translationMatrix = MathHelper::Transpose(translationMatrix);
+
+	float cos = cosf((float)totalDegreesRotatedRadians);
+	float sin = sinf((float)totalDegreesRotatedRadians);
+	
+	//Pitch
+	MathHelper::Matrix4 rotationX;
+	rotationX.m[1][1] = cos;
+	rotationX.m[1][2] = -sin;
+	rotationX.m[2][1] = sin;
+	rotationX.m[2][2] = cos;
+	rotationX = MathHelper::Transpose(rotationX);
+
+	//Yaw
+	MathHelper::Matrix4 rotationY;
+	rotationY.m[0][0] = cos;
+	rotationY.m[0][2] = sin;
+	rotationY.m[2][0] = -sin;
+	rotationY.m[2][2] = cos;
+	rotationY = MathHelper::Transpose(rotationY);
+
+	//Roll
+
+	MathHelper::Matrix4 totalRotation = MathHelper::Multiply(rotationX, rotationY);
+
+	MathHelper::Matrix4 modelMatrix = MathHelper::Multiply(totalRotation, translationMatrix);
+	//MathHelper::Matrix4 modelMatrix = MathHelper::SimpleModelMatrixRotationTranslation((float)totalDegreesRotatedRadians, m_objectPosition);
 
 	if (m_uObjIND > 0)
 	{
 		m_ptrRenderer->renderObject(&m_uShasderID, &m_uObjIND, &m_TextureID, m_lista.First->getData()->Get_m_iCountFaces(), color, &modelMatrix, COpenGLRenderer::TRIANGLES, false);
 		//m_ptrRenderer->renderObject(&m_uShasderID, &m_uObjIND, &noTexture, m_pObjR->Get_m_iCountFaces(), color, &modelMatrix, COpenGLRenderer::TRIANGLES, false);
 	}
+
 }
 
 void CAppRender3D::onF2(int mods)
@@ -118,7 +185,6 @@ void CAppRender3D::onF2(int mods)
 
 void CAppRender3D::onF12(int mods)
 {
-	
 	m_ptrWindow = nullptr;
 }
 
