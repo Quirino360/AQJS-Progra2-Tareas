@@ -5,7 +5,7 @@
 CApp::CApp()
 {
     m_ptrRenderer = new COpenGLRenderer();
-    m_ptrWindow = new CGameWindow(m_ptrRenderer, 800, 600);
+    m_ptrWindow = new CGameWindow(m_ptrRenderer, 1080, 720);
 }
 CApp::~CApp() {
     if (m_ptrRenderer != nullptr) {

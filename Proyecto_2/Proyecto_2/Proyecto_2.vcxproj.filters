@@ -7,47 +7,56 @@
     <ClCompile Include="CAppRender3D.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="CGameWindow.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="CObjReader.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="COpenGLRenderer.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="COpenGLShaderProgram.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="CTextureLoader.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="CVector3.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Dependencies\GLAD\glad-4.5-core\src\glad.c">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ListaDoblemeteLigada.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="ListaLigadaInt.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadShaders.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadTGA.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="NodoDoblemeteLigado.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="NodoListaLigadaInt.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="Source.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="List_Impl.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaDoblemeteLigada.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaLigadaInt.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="NodoListaLigadaInt.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="NodoDoblemeteLigado.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="Dependencies\GLAD\glad-4.5-core\src\glad.c">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadShaders.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadTGA.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="CVector3.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="CTextureLoader.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="COpenGLShaderProgram.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="CGameWindow.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="COpenGLRenderer.cpp">
+      <Filter>Archivos de origen\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="KdTree.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
+    </ClCompile>
+    <ClCompile Include="KdTreeNode.cpp">
+      <Filter>Archivos de origen\Listas</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,50 +66,56 @@
     <ClInclude Include="CAppRender3D.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="CGameWindow.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="CObjReader.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="COpenGLRenderer.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="COpenGLShaderProgram.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CTextureLoader.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CVector3.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="CWideStringHelper.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Globals.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="ListaLigadaInt.h">
+      <Filter>Archivos de encabezado\Listas</Filter>
     </ClInclude>
     <ClInclude Include="ListaDoblemeteLigada.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="ListaLigadaInt.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadShaders.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadTGA.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="MathHelper.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="NodoDoblemeteLigado.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Listas</Filter>
     </ClInclude>
     <ClInclude Include="NodoListaLigadaInt.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\Listas</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoDoblemeteLigado.h">
+      <Filter>Archivos de encabezado\Listas</Filter>
+    </ClInclude>
+    <ClInclude Include="COpenGLRenderer.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="COpenGLShaderProgram.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="CTextureLoader.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="CVector3.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="CWideStringHelper.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadShaders.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadTGA.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="MathHelper.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="CGameWindow.h">
+      <Filter>Archivos de encabezado\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="KdTree.h">
+      <Filter>Archivos de encabezado\Listas</Filter>
+    </ClInclude>
+    <ClInclude Include="KdTreeNode.h">
+      <Filter>Archivos de encabezado\Listas</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +127,18 @@
     </Filter>
     <Filter Include="Archivos de recursos">
       <UniqueIdentifier>{12cedd24-5819-4e7c-b723-99898d9e2074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Listas">
+      <UniqueIdentifier>{ad0a381e-e651-43bb-9979-04448677a927}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Listas">
+      <UniqueIdentifier>{d3299645-5209-40b2-86f8-5c7f31168792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\OpenGl">
+      <UniqueIdentifier>{daec76d7-3a45-423e-bfb5-3be78c193f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\OpenGl">
+      <UniqueIdentifier>{8c48370b-f510-4044-a1cc-49801a7e5877}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -866,6 +866,7 @@ bool COpenGLRenderer::generateRenderGeometry(
 			|| ((vIndices[1] * 3) + 2) >= (numVertices * 3)
 			|| ((vIndices[2] * 3) + 2) >= (numVertices * 3))
 		{
+
 			cout << "COpenGLRenderer::generateRenderGeometry() : Invalid vertex indices" << endl;
 			return false;
 		}

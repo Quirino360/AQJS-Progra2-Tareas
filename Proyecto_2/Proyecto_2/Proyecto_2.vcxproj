@@ -167,8 +167,11 @@
     <ClCompile Include="CTextureLoader.cpp" />
     <ClCompile Include="CVector3.cpp" />
     <ClCompile Include="Dependencies\GLAD\glad-4.5-core\src\glad.c" />
+    <ClCompile Include="KdTree.cpp" />
+    <ClCompile Include="KdTreeNode.cpp" />
     <ClCompile Include="ListaDoblemeteLigada.cpp" />
     <ClCompile Include="ListaLigadaInt.cpp" />
+    <ClCompile Include="List_Impl.cpp" />
     <ClCompile Include="LoadShaders.cpp" />
     <ClCompile Include="LoadTGA.cpp" />
     <ClCompile Include="NodoDoblemeteLigado.cpp" />
@@ -186,6 +189,8 @@
     <ClInclude Include="CVector3.h" />
     <ClInclude Include="CWideStringHelper.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="KdTree.h" />
+    <ClInclude Include="KdTreeNode.h" />
     <ClInclude Include="ListaDoblemeteLigada.h" />
     <ClInclude Include="ListaLigadaInt.h" />
     <ClInclude Include="LoadShaders.h" />

@@ -2,6 +2,11 @@
 #include "CGameWindow.h"
 #include "COpenGLRenderer.h"
 
+#define KEY_MOD_SHIFT     0x0001
+#define KEY_MOD_CONTROL   0x0002
+#define KEY_MOD_ALT       0x0004
+#define KEY_MOD_UNUSED    0x0008
+
 class CApp {
 
 protected:

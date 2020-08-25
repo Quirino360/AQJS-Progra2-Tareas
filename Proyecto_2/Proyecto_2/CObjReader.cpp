@@ -1,4 +1,6 @@
 #include "CObjReader.h"
+#include <cstdlib>
+#include <time.h>
 
 //Insertar el string con la extencion .obj
 CObjReader::CObjReader(const string& FileName) :
@@ -18,8 +20,19 @@ CObjReader::CObjReader(const string& FileName) :
 	m_iVectorFaces(0),
 	m_sTextureArch(""),
 	File_Name(FileName),
-	m_FacesSubIndices(0)
+	m_FacesSubIndices(0),
+	m_sTexture(""),
+	m_uObjID(0),
+	m_ShaderID(0),
+	m_TextureID(0)
+
 {
+	float pos_x = 3 - rand() % (3 + 3);
+	float pos_y = 2 - rand() % (2 + 2);
+
+	m_objectRotation = new CVector3(0,0,0);
+	m_objectPosition = new CVector3(pos_x, pos_y,0);
+	m_objectScale = new CVector3(1,1,1);
 
 	fstream m_object(FileName);
 	if (!m_object)
@@ -44,9 +57,77 @@ CObjReader::CObjReader():
 	m_iVectorUVCoords(0),
 	m_iVectorFaces(0),
 	m_sTextureArch(""),
-	m_FacesSubIndices(0)
+	m_FacesSubIndices(0),
+	m_sTexture(""),
+	m_uObjID(0),
+	m_ShaderID(0),
+	m_TextureID(0)
+{
+	float pos_x = 3 - rand() % (3 + 3);
+	float pos_y = 2 - rand() % (2 + 2);
+
+	m_objectRotation = new CVector3(0, 0, 0);
+	m_objectPosition = new CVector3(pos_x, pos_y, 0);
+	m_objectScale = new CVector3(1, 1, 1);
+}
+
+CObjReader::CObjReader(const CObjReader& cpy)
 {
 
+	m_objectRotation = new CVector3(0, 0, 0);
+	m_objectPosition = new CVector3(cpy.Get_m_objectPosition()->X, cpy.Get_m_objectPosition()->Y, 0);
+	m_objectScale = new CVector3(1, 1, 1);
+
+	m_iCountVertices = cpy.m_iCountVertices;
+	m_iCountNormales = cpy.m_iCountNormales;
+	m_iCountUVCoords = cpy.m_iCountUVCoords;
+	m_iCountFaces = cpy.m_iCountFaces;
+	m_iVectorVertices = cpy.m_iVectorVertices;
+	m_iVectorNormales = cpy.m_iVectorNormales;
+	m_iVectorUVCoords = cpy.m_iVectorUVCoords;
+	m_iVectorFaces = cpy.m_iVectorFaces;
+	m_sTextureArch = cpy.m_sTextureArch;
+	m_FacesSubIndices = cpy.m_FacesSubIndices;
+	m_sTexture = cpy.m_sTexture;
+	m_uObjID = cpy.m_uObjID;
+	m_ShaderID = cpy.m_ShaderID;
+	m_TextureID = cpy.m_TextureID;
+	File_Name = cpy.File_Name;
+
+	m_pVertices = new float[cpy.m_iCountVertices * cpy.m_iVectorVertices];
+	memset(m_pVertices, 0, (cpy.m_iCountVertices * cpy.m_iVectorVertices) * sizeof(float));
+	memcpy(m_pVertices, cpy.m_pVertices, (cpy.m_iCountVertices * cpy.m_iVectorVertices) * sizeof(float));
+
+	m_pNormales = new float[cpy.m_iCountNormales * cpy.m_iVectorNormales];
+	memset(m_pNormales, 0, (cpy.m_iCountNormales * cpy.m_iVectorNormales) * sizeof(float));
+	memcpy(m_pNormales, cpy.m_pNormales, (cpy.m_iCountNormales * cpy.m_iVectorNormales) * sizeof(float));
+
+	m_pUVCoords = new float[cpy.m_iCountUVCoords * cpy.m_iVectorUVCoords];
+	memset(m_pUVCoords, 0, (cpy.m_iCountUVCoords * cpy.m_iVectorUVCoords) * sizeof(float));
+	memcpy(m_pUVCoords, cpy.m_pUVCoords, (cpy.m_iCountUVCoords * cpy.m_iVectorUVCoords) * sizeof(float));
+
+	m_pIndVertices = new unsigned short[cpy.m_iCountFaces * cpy.m_iVectorFaces];// numero de figura por la catidad de vertices de cada figura
+	memset(m_pIndVertices, 0, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+	memcpy(m_pIndVertices, cpy.m_pIndVertices, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+
+
+	if (cpy.m_FacesSubIndices != 1)
+	{
+		m_pIndNormales = new unsigned short[cpy.m_iCountFaces * cpy.m_iVectorFaces];
+		memset(m_pIndNormales, 0, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+		memcpy(m_pIndNormales, cpy.m_pIndNormales, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+	}
+
+	if (cpy.m_FacesSubIndices == 3) // para ver si tiene textura
+	{
+		m_pIndUVCoords = new unsigned short[cpy.m_iCountFaces * cpy.m_iVectorFaces];
+		memset(m_pIndUVCoords, 0, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+		memcpy(m_pIndUVCoords, cpy.m_pIndUVCoords, (cpy.m_iCountFaces * cpy.m_iVectorFaces) * sizeof(unsigned short));
+	}
+
+
+	std::cout << "m_pVertices = " << m_pVertices << std::endl;
+	std::cout << "Copy m_pVertices = " << cpy.m_pVertices << std::endl;
 }
 
 //Dtor
@@ -55,31 +136,40 @@ CObjReader::~CObjReader()
 	if (m_pVertices != nullptr)
 	{
 		delete[] m_pVertices;
+		m_pVertices = nullptr;
 	}
 	if (m_pNormales != nullptr)
 	{
 		delete[] m_pNormales;
+		m_pNormales = nullptr;
 	}
 	if (m_pUVCoords != nullptr)
 	{
 		delete[] m_pUVCoords;
+		m_pUVCoords = nullptr;
 	}
 	if (m_pIndVertices != nullptr)
 	{
 		delete[] m_pIndVertices;
+		m_pIndVertices = nullptr;
 	}
 	if (m_pIndNormales != nullptr)
 	{
 		delete[] m_pIndNormales;
+		m_pIndNormales = nullptr;
 	}
-	if (m_pIndNormales != nullptr)
+	if (m_pIndUVCoords != nullptr)
 	{
 		delete[] m_pIndUVCoords;
+		m_pIndUVCoords = nullptr;
 	}
+
 }
 
 bool CObjReader::OpenObjFile(string pfilename)
 {
+	std::cout << "Memm set File name = " << File_Name << std::endl;
+
 	fstream m_object(pfilename);
 	if (!m_object)
 	{
@@ -106,6 +196,7 @@ bool CObjReader::OpenObjFile(string pfilename)
 
 void CObjReader::ObjSetMemAndVar(string StringObj)
 {
+	File_Name = StringObj;
 	string string_ReadObjFile;
 	fstream ObjFile(StringObj);
 
@@ -115,13 +206,13 @@ void CObjReader::ObjSetMemAndVar(string StringObj)
 		getline(ObjFile, string_ReadObjFile);
 		stringstream Token_ObjFile;
 		Token_ObjFile << string_ReadObjFile;
-		Token_ObjFile >> string_ReadObjFile;	
+		Token_ObjFile >> string_ReadObjFile;
 
 		//vertices
 		if (string_ReadObjFile == "v")
 		{
 			//para ver cuantas cordenadas usa el obj
-			
+
 			if (m_iCountVertices == 0)
 			{
 				while (!Token_ObjFile.eof())
@@ -268,7 +359,7 @@ void CObjReader::ObjSetMemAndVar(string StringObj)
 					VectorStrings.push_back(Temporal);
 				}
 			}
-			for (int i = 3; i <= VectorStrings.size(); i++) 
+			for (int i = 3; i <= VectorStrings.size(); i++)
 			{
 				ReadFigures(VectorStrings[0], F++);
 				ReadFigures(VectorStrings[i - 2], F++);
@@ -278,10 +369,10 @@ void CObjReader::ObjSetMemAndVar(string StringObj)
 	}
 	ObjFile.close();
 	///////////////////////////////////////////////////////////////////////////////////////
-	cout << "Vertices = " << m_iCountVertices * m_iVectorVertices << endl;
+	/*cout << "Vertices = " << m_iCountVertices * m_iVectorVertices << endl;
 	cout << "Texture = " << m_iCountUVCoords * m_iVectorUVCoords << endl;
 	cout << "Normales = " << m_iCountNormales * m_iVectorNormales << endl;
-	cout << "Faces = " << m_iCountFaces * m_iVectorFaces * m_FacesSubIndices << endl;
+	cout << "Faces = " << m_iCountFaces * m_iVectorFaces * m_FacesSubIndices << endl;*/
 	///////////////////////////////////////////////////////////////////////////////////////
 }
 

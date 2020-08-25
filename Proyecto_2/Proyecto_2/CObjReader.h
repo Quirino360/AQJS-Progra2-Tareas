@@ -4,8 +4,11 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "CVector3.h"
 
 using namespace std;
+
+
 
 class CObjReader
 {
@@ -34,9 +37,22 @@ private:
 	std::string File_Name;
 	std::string m_sTextureArch;
 
+	///////////////////////////////////
+
+	std::string m_sTexture;
+
+	CVector3* m_objectRotation;
+	CVector3* m_objectPosition;
+	CVector3* m_objectScale;
+
+	unsigned int m_uObjID;
+	unsigned int m_ShaderID;
+	unsigned int m_TextureID;
+
 public:
 	//Constructor (Ctor)
 	CObjReader(const string& FileName);
+	CObjReader(const CObjReader& cpy);
 	CObjReader();
 
 	//Destructor (Dtor)
@@ -55,28 +71,48 @@ public:
 	//Print to console
 	void printObj();
 
-
+	bool IsEmpty() { if (m_pVertices == nullptr) { return false; } return true; }
 
 public:
-	float* Get_m_pVertices() { return m_pVertices; }
-	float* Get_m_pNormales() { return m_pNormales; }
-	float* Get_m_pUVCoords() { return m_pUVCoords; }
+	float* Get_m_pVertices() const { return m_pVertices; }
+	float* Get_m_pNormales() const { return m_pNormales; }
+	float* Get_m_pUVCoords() const { return m_pUVCoords; }
 
-	unsigned  short* Get_m_pIndVertices() { return m_pIndVertices; }
-	unsigned short* Get_m_pIndNormales() { return m_pIndNormales; }
-	unsigned short* Get_m_pIndUVCoords() { return m_pIndUVCoords; }
+	unsigned  short* Get_m_pIndVertices() const { return m_pIndVertices; }
+	unsigned short* Get_m_pIndNormales() const { return m_pIndNormales; }
+	unsigned short* Get_m_pIndUVCoords() const { return m_pIndUVCoords; }
 
-	unsigned int Get_m_iCountVertices() { return m_iCountVertices; };
-	unsigned int Get_m_iCountNormales() { return m_iCountNormales; };
-	unsigned int Get_m_iCountUVCoords() { return m_iCountUVCoords; };
-	unsigned int Get_m_iCountFaces() { return m_iCountFaces; };
+	unsigned int Get_m_iCountVertices() const { return m_iCountVertices; };
+	unsigned int Get_m_iCountNormales() const { return m_iCountNormales; };
+	unsigned int Get_m_iCountUVCoords() const { return m_iCountUVCoords; };
+	unsigned int Get_m_iCountFaces() const { return m_iCountFaces; };
 
-	unsigned int Get_m_iVerticeVectorType() { return m_iVectorVertices; }
-	unsigned int Get_m_iNormalesVectorType() { return m_iVectorNormales; }
-	unsigned int Get_m_iUVCoordVectorType() { return m_iVectorUVCoords; }
-	unsigned int Get_m_iFacesVectorType() { return m_iVectorFaces; }
+	unsigned int Get_m_iVerticeVectorType() const { return m_iVectorVertices; }
+	unsigned int Get_m_iNormalesVectorType() const { return m_iVectorNormales; }
+	unsigned int Get_m_iUVCoordVectorType() const { return m_iVectorUVCoords; }
+	unsigned int Get_m_iFacesVectorType() const { return m_iVectorFaces; }
 
-	unsigned int Get_m_FacesSubIndices() { return m_FacesSubIndices; }
+	unsigned int Get_m_FacesSubIndices() const { return m_FacesSubIndices; }
 
-	string Get_m_sFileName() { return File_Name; };
+	string Get_m_sFileName() const { return File_Name; };
+
+	std::string get_m_sTexture() const { return m_sTexture; };
+	std::string set_m_sTexture(std::string _m_sTexture) { return m_sTexture = _m_sTexture; };
+
+
+	CVector3* Get_m_objectRotation() const { return m_objectRotation; };
+	CVector3* Get_m_objectPosition() const { return m_objectPosition; };
+	CVector3* Get_m_objectScale() const { return m_objectScale; };
+
+	void Set_m_objectRotation(float _x, float _y, float _z) {  m_objectRotation = new CVector3(_x, _y, _z); };
+	void Set_m_objectPosition(float _x, float _y, float _z) {  m_objectPosition = new CVector3(_x, _y, _z); };
+	void Set_m_objectScale(float _x, float _y, float _z) {  m_objectScale = new CVector3(_x, _y, _z); };
+
+	 unsigned int& get_m_uObjID()   { return m_uObjID; };
+	 unsigned int& get_m_ShaderID()   { return m_ShaderID; };
+	 unsigned int& get_m_TextureID()  { return m_TextureID; };
+
+	void set_m_uObjID(unsigned int _muObjID) {  m_uObjID = _muObjID; };
+	void set_m_ShaderID(unsigned int _m_ShaderID) {  m_ShaderID = _m_ShaderID; };
+	void set_m_TextureID(unsigned int _m_TextureID) {  m_TextureID = _m_TextureID; };
 };
